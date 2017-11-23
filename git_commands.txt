@@ -7,6 +7,12 @@ git  add  -A         // stages all files
 git  reset
 git  commit  -m "commit message here"
 
+// To associate a remote repository with a local one
+git remote add origin https://github.com/laeeqkhan01/repo_name.git
+
+// To push changes in local repository to remote one
+git  push -u origin master
+
 // To clone remote repository locally
 git  clone  path_to_remote_repo  .  
 
