@@ -1,0 +1,31 @@
+
+git  init
+git  init  --bare
+git  status
+git  add  fileName   // stages a file
+git  add  -A         // stages all files
+git  reset
+git  commit  -m "commit message here"
+
+// To clone remote repository locally
+git  clone  path_to_remote_repo  .  
+
+git  remote -v
+git  branch -a
+
+git  branch   // shows all local branches
+git  branch  new_branch_name    // creates a new branch
+
+git  checkout  branch_name     // switches to a different branch
+
+git  branch  --merged  // lists branches merged
+
+git  branch  -d  branch_name  // deletes a local branch
+git  push origin  --delete branch_name  // deletes branch from remote repo
+
+git  push -u origin branch_name  // creates a branch in remote repo
+
+
+// To get git user name
+git  config  --get  user.name
+
