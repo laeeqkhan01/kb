@@ -1,1 +1,1 @@
-Contains useful information.
+Contains commands, procedures, examples etc.

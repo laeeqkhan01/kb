@@ -1,7 +1,13 @@
+//
+// Useful git github commands
+//
 
 git  init
 git  init  --bare
 git  status
+git  rm   fileName   // remove a file, delete
+git  mv   oldFileName  newFileName  // move a file, rename
+git  log
 git  add  fileName   // stages a file
 git  add  -A         // stages all files
 git  reset
@@ -12,17 +18,18 @@ git remote add origin https://github.com/laeeqkhan01/repo_name.git
 
 // To push changes in local repository to remote one
 git  push -u origin master
+git  push  remote_repo_name  branch_name
 
 // To clone remote repository locally
 git  clone  path_to_remote_repo  .  
 
-git  remote -v
-git  branch -a
+git  remote -v  // List remote repositories
+git  branch -a  // List all local & remote branches
 
 git  branch   // shows all local branches
 git  branch  new_branch_name    // creates a new branch
 
-git  checkout  branch_name     // switches to a different branch
+git  checkout  branch_name     // switch to a different branch
 
 git  branch  --merged  // lists branches merged
 
