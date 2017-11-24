@@ -1,0 +1,97 @@
+
+Basic procedure to deal with 2D texture.
+
+- A three dimensional array representing texture image needs to be cerated.
+
+  GLubyte  txtr_img[height][width][4];  // Each byte in last dimension represts 
+                                        // R, G, B, A values.
+
+
+- Write procedure to initialize txtr_img
+
+void init_txtr_image()
+{
+  for(i= 0; i< width; i++)
+  {
+    for(j=0; j<height; j++)
+    {
+      txtr_img[i][j][0] = ...;  // R value
+      txtr_img[i][j][1] = ...;  // G value
+      txtr_img[i][j][3] = ...;  // B value
+      txtr_img[i][j][4] = 255;  // A value. opaque Texture image
+    }
+  }
+}
+
+
+- An integer handle represents each texture.
+
+GLuint  txtr_name;    // handle for this texture.
+
+
+In initGL() part,  do following,
+
+
+void initGL()
+{
+  init_txtr_image();       // prepare texture image
+  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+  glGenTexture(1, &txtr_name);   // This will initialize texture handle.
+  glBindTexture(GL_Texture_2D, txtr_name);   // This is most important, read on.
+  // From now on, all texture operations will refer to and pertain to this texture,
+  // (txtr_name) without explicitly naming it in library function calls. 
+  // Notice, image has not yet been associated with this texture. 
+  // This will be done later by glTexImage2D() call.
+
+   // Set various parameters for current texture behaviour
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   .............
+   .............
+
+   // Now, the current texture (txtr_name) will be associated with the image
+   // prepared earlier (txtr_img). See last parameter.
+   
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, checkImageWidth, checkImageHeight, 
+                0, GL_RGBA, GL_UNSIGNED_BYTE, txtr_img);
+
+
+   // Now write display function or paintGL()
+
+
+  void paintGL()   // or displayfunction() for C programs
+  {
+    
+    glEnable(GL_TEXTURE_2D);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+    glBindTexture(GL_TEXTURE_2D, txtr_name);   // This texture will be used in 
+                                               // rendering.
+
+
+
+
+    glBegin(GL_QUADS);
+      // write pairs of texture coordinate and vertex coordinates.
+      // Each vetex has a corresponding texture coordinate (texel).
+
+      /* draw a square 
+      glTexCoord2f(0.0, 0.0); glVertex3f(-2.0, -2.0, 0.0);
+      glTexCoord2f(0.0, 1.0); glVertex3f(-2.0,  2.0, 0.0);
+      glTexCoord2f(1.0, 1.0); glVertex3f( 2.0,  2.0, 0.0);
+      glTexCoord2f(1.0, 0.0); glVertex3f( 2.0, -2.0, 0.0);
+      */
+
+      // Draw a parallalogram
+      glTexCoord2f(0.0, 0.0); glVertex3f(-2.0, -2.0, 0.0);
+      glTexCoord2f(0.0, 1.0); glVertex3f(-1.0,  2.0, 0.0);
+      glTexCoord2f(1.0, 1.0); glVertex3f( 3.0,  2.0, 0.0);
+      glTexCoord2f(1.0, 0.0); glVertex3f( 2.0, -2.0, 0.0);
+
+    glEnd();
+
+    glFlush();
+    glDisable(GL_TEXTURE_2D);
+  }
+
