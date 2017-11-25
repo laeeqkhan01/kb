@@ -5,12 +5,33 @@
 git  init
 git  init  --bare
 git  status
+
 git  rm   fileName   // remove a file, delete
 git  mv   oldFileName  newFileName  // move a file, rename
+
 git  log
+git  log -p          // show changes at each commit
+git  log  --  fileName  // Shows all commits which affected
+                        // a specific file
+
 git  add  fileName   // stages a file
-git  add  -A         // stages all files
-git  reset
+git  add  -A         // stages all modified files
+git  add  .          // stages all modified files in current dir
+
+// To un-stage a staged file (remove a file from staging area)
+// Local file will not be changed
+git  reset  HEAD  fileName
+
+// To discard working changes in a file, get it back from repo
+// To abandone working changes in a file, get it back from repo
+// To refresh a file from repo, discarding all local changes
+git  checkout  --  fileName
+
+// To refresh a file from repository from a a specific commit
+// This will also stage that file.
+git  checkout  SHA_of_that_commit   -- fileName
+git  checkout  e09671   --  fileName  // e09671 is part of SHA
+
 git  commit  -m "commit message here"
 
 // To associate a remote repository with a local one
@@ -30,15 +51,28 @@ git  branch   // shows all local branches
 git  branch  new_branch_name    // creates a new branch
 
 git  checkout  branch_name     // switch to a different branch
+git  checkout  -b branch_name  // create & switch to branch
 
 git  branch  --merged  // lists branches merged
+
+git  merge  branch_name  // merges branch_name in current branch
 
 git  branch  -d  branch_name  // deletes a local branch
 git  push origin  --delete branch_name  // deletes branch from remote repo
 
 git  push -u origin branch_name  // creates a branch in remote repo
 
+git  config  --list       // Returns user.name user.email etc
 
 // To get git user name
 git  config  --get  user.name
 
+// To see difference between staging and working areas
+git  diff  file_name
+git  diff                 // Shows differences in all changed files
+
+// To see difference between staging area and local repository
+git  diff --staged
+
+// To make git ignore some files, not track them
+// Add all such files in .gitignore file
