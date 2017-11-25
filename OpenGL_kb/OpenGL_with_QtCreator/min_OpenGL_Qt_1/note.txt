@@ -1,0 +1,35 @@
+This example shows how to create an OpenGL widget inside
+QtCreator.
+
+Half the work will be done by hand, and half by 
+Qt Designer.
+
+A class derived from QOpenGLWidget needs to be created
+We are calling this class OGL_1.
+Create the class using "Add New C++ class" of Qt Creator.
+Keep base class as QOpenGLWidget <Custom>
+Type QOpenGLWidget under Base class:
+Don't check any of the check boxes.
+This will create two files, ogl_1.h and ogl_1.cpp.
+#include <QOpenGLWidget> in header
+Make constructor take argument (QWidget *parent = 0)
+Complete the class by creating follwing methods
+
+protected:
+    void initializeGL();
+    void resizeGL(int w, int h);
+    void paintGL();
+
+In Designer mainwindow.ui form,
+drag a "Widget" to the mainwindow.ui form
+
+Right click on Widget/QWidget and choose "Promote to"
+In the "Promoted class name "OGL_1" the class you 
+created by hand earlier.
+
+Click "Add"
+Click "Promote"
+
+"Promote" it to new class "OGL_1"
+
+
