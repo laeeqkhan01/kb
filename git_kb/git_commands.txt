@@ -3,7 +3,7 @@
 //
 
 git  init
-git  init  --bare
+git  init  --bare // creates an empty repository, generally on remote.
 git  status
 
 git  rm   fileName   // remove a file, delete
@@ -13,6 +13,9 @@ git  log
 git  log -p          // show changes at each commit
 git  log  --  fileName  // Shows all commits which affected
                         // a specific file
+git  log  --all  --decorate  --oneline  --graph
+alias graph="git  log  --all  --decorate  --oneline  --graph"
+
 
 git  add  fileName   // stages a file
 git  add  -A         // stages all modified files
@@ -34,12 +37,22 @@ git  checkout  e09671   --  fileName  // e09671 is part of SHA
 
 git  commit  -m "commit message here"
 
+// To add a remote repository.
 // To associate a remote repository with a local one
+git remote add  <alias for remote repo>   <url of remote>
 git remote add origin https://github.com/laeeqkhan01/repo_name.git
+
+// To list all remote repositories
+git  remote
+git  remote -v
+// you can also look in .git/config  file.
 
 // To push changes in local repository to remote one
 git  push -u origin master
 git  push  remote_repo_name  branch_name
+
+// To pull changes in local repository from remote one
+git  pull
 
 // To clone remote repository locally
 git  clone  path_to_remote_repo  .  
@@ -53,11 +66,19 @@ git  branch  new_branch_name    // creates a new branch
 git  checkout  branch_name     // switch to a different branch
 git  checkout  -b branch_name  // create & switch to branch
 
-git  branch  --merged  // lists branches merged
+git  branch  --merged  // lists branches merged with current branch
 
 git  merge  branch_name  // merges branch_name in current branch
 
-git  branch  -d  branch_name  // deletes a local branch
+bit  merge  --abort      // Abandones merge process.
+
+git  branch  -d  branch_name  // deletes a local branch, that branch
+                              // must be fully merged with current one
+
+git  branch  -D  branch_name  // forcibly deletes a local branch, even
+                              // if that branch in not fully merged
+			      // with the current one.
+
 git  push origin  --delete branch_name  // deletes branch from remote repo
 
 git  push -u origin branch_name  // creates a branch in remote repo
@@ -76,3 +97,5 @@ git  diff --staged
 
 // To make git ignore some files, not track them
 // Add all such files in .gitignore file
+
+
