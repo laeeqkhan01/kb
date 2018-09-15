@@ -6,7 +6,7 @@ git  init
 git  init  --bare // creates an empty repository, generally on remote.
 git  status
 
-git  rm   fileName   // remove a file, delete
+git  rm   fileName   // remove a file from git repository
 git  mv   oldFileName  newFileName  // move a file, rename
 
 git  log
@@ -52,14 +52,16 @@ git  push -u origin master
 git  push  remote_repo_name  branch_name
 
 // To pull changes in local repository from remote one
+// Make sure, working area is clean, and all changes are commited.
 git  pull
+ - or -
+git fetch origin     and then     git merge origin/master
 
 // To clone remote repository locally
-git  clone  path_to_remote_repo  .  
+git  clone  path_to_remote_repo  
 
-git  remote -v  // List remote repositories
 git  branch -a  // List all local & remote branches
-
+git  branch -r  // List all remote branches
 git  branch   // shows all local branches
 git  branch  new_branch_name    // creates a new branch
 
@@ -84,6 +86,10 @@ git  push origin  --delete branch_name  // deletes branch from remote repo
 git  push -u origin branch_name  // creates a branch in remote repo
 
 git  config  --list       // Returns user.name user.email etc
+git  config  --global  user.name  "Laeeq Khan"
+git  config  --global  user.email "lkhan@abcd.com"
+git  config  --local   user.name  "Laeeq Khan"
+git  config  --local   user.email "lkhan@abcd.com"
 
 // To get git user name
 git  config  --get  user.name
@@ -99,3 +105,9 @@ git  diff --staged
 // Add all such files in .gitignore file
 
 
+git  stash   # Stashes current work and makes work area clean, for pull etc.
+git  stash  save  "Text description of stash"
+git  stash  apply   # Applies most recent stash
+git  stash  apply  label   # Applies a specific stash
+git  stash  list
+git  stash  list  -p
