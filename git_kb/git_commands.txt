@@ -25,10 +25,18 @@ git  add  .          // stages all modified files in current dir
 // Local file will not be changed
 git  reset  HEAD  fileName
 
-// To discard working changes in a file, get it back from repo
-// To abandone working changes in a file, get it back from repo
+// To discard uncommitted working changes in a file, get it back from repo
+// To abandone uncommitted working changes in a file, get it back from repo
 // To refresh a file from repo, discarding all local changes
-git  checkout  --  fileName
+git  checkout  --  fileName  # discard un-committed changes from fileName in working area
+git  checkout  --  .  # discard all un-committed changes in working area/tree
+
+// To revert a commit
+git  revert  2fe4ee37  # reverts a commit by that hash
+
+To abandone a commit and ALL subsequent commits
+git  reset  --hard  6c90df9e   # This commit and ALL subsequent commits will be gone
+                               # from local repository.
 
 // To refresh a file from repository from a a specific commit
 // This will also stage that file.
@@ -38,7 +46,7 @@ git  checkout  e09671   --  fileName  // e09671 is part of SHA
 git  commit  -m "commit message here"
 
 // To add a remote repository.
-// To associate a remote repository with a local one
+// To associate a remote repository with a local repository
 git remote add  <alias for remote repo>   <url of remote>
 git remote add origin https://github.com/laeeqkhan01/repo_name.git
 
